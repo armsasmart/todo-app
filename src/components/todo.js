@@ -15,10 +15,15 @@ export default function Todo(props) {
                     <div className="level-right">
                         <div className="level-item buttons">
                             <button
+                                onClick={props.toggleDone.bind(this, props.todo)}
                                 className={`button has-text-weight-bold ${props.todo.done ? "is-warning" : "is-primary"}`}>
                                 {props.todo.done ? "Undo" : "Done"}
                             </button>
-                            <button className="button is-danger has-text-weight-bold">Delete</button>
+                            <button
+                                onClick={props.deleteTodo.bind(this, props.todo)}
+                                className="button is-danger has-text-weight-bold">
+                                Delete
+                            </button>
                         </div>
                     </div>
                 </div>
