@@ -1,14 +1,15 @@
 import React from "react";
-import {TodoProvider} from "./TodoContext";
 import Navbar from "./components/navbar";
 import TodoList from "./components/todolist";
+import {TodoStore} from "./TodoStore";
 
 function App() {
+    const store = new TodoStore();
     return (
-        <TodoProvider>
-            <Navbar/>
-            <TodoList/>
-        </TodoProvider>
+        <>
+            <Navbar store={store}/>
+            <TodoList store={store}/>
+        </>
     );
 };
 

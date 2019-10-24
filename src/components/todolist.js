@@ -1,19 +1,9 @@
-import React, {useContext} from "react";
-import {TodoContext} from "../TodoContext";
+import React from "react";
 import Todo from "./todo";
+import {observer} from "mobx-react";
 
-export default function TodoList() {
-    const [todos, setTodo] = useContext(TodoContext);
-
-    const toggleDone = (todo) => {
-        todos.map(_todo => _todo === todo ? _todo.done = !todo.done : todo);
-        setTodo([...todos]);
-    };
-
-    const deleteTodo = (todo) => {
-        const _todos = todos.filter(_todo => _todo !== todo);
-        setTodo(_todos);
-    };
+function TodoList(props) {
+    const {todos, toggleDone, deleteTodo, filteredTodos} = props.store;
 
     return (
         <div>
@@ -25,7 +15,15 @@ export default function TodoList() {
 
             <section className="section">
                 <div className="container">
-                    {todos.map(todo => (
+                    <input className="input" placeholder="Search..."
+                           type="text" value={props.store.filter}
+                           onChange={(e) => props.store.filter = e.target.value}/>
+                </div>
+            </section>
+
+            <section className="section">
+                <div className="container">
+                    {filteredTodos.map(todo => (
                         <Todo key={todo.id} todo={todo} toggleDone={toggleDone} deleteTodo={deleteTodo}/>
                     ))}
                 </div>
@@ -33,3 +31,5 @@ export default function TodoList() {
         </div>
     );
 };
+
+export default observer(TodoList)
