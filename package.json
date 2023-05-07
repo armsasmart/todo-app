@@ -9,7 +9,7 @@
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-mobx": "0.0.4",
-    "react-scripts": "3.2.0"
+    "react-scripts": "5.0.1"
   },
   "scripts": {
     "start": "react-app-rewired start",
